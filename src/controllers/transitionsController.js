@@ -11,7 +11,7 @@ export async function home(req,res){
 }
 
 export async function inflow(req,res){
-    const token = req.headers.authorization?.replace('Bearer ', '');   
+    const{token} =res.locals;
     const cashInflow = req.body;
     try{
         const session = await db.collection('sessions').findOne({token});
@@ -25,7 +25,7 @@ export async function inflow(req,res){
 }
 
 export async function outflow(req,res){
-    const token = req.headers.authorization?.replace('Bearer ', '');
+    const{token} =res.locals;
     const cashOutflow = req.body;
     try{
         const session = await db.collection('sessions').findOne({token});

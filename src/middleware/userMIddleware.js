@@ -26,3 +26,14 @@ export async function userMiddleware(req,res,next){
         return res.sendStatus(500);
       }
 }
+
+export function tokenMiddleware(req,res,next){
+    const authorization = req.headers.authorization;
+    const token = req.headers.authorization?.replace('Bearer ','');
+
+    if(!token){
+        return res.sendStatus(401);
+    }
+    res.locals.token =token;
+    next();
+}
