@@ -1,32 +1,20 @@
-import express from 'express'
-import { login, signUp } from './src/controllers/authController.js'
+import express, { application } from 'express'
 import { home, inflow, outflow } from './src/controllers/transitionsController.js';
 import cors from 'cors'
-
-
+import authRouters from './src/routes/authRouters.js'
+import transactionRoutes from './src/routes/transactionRoutes.js'
 
 const server = express();
 server.use(cors());
 server.use(express.json());
 
-
-
 /*CADASTRO*/
-
-server.post('/sign-up',signUp);
-
 /*LOGIN*/
-server.post('/',login);
-
+server.use(authRouters);
 /*CASH FLOW*/
-server.get('/cashflow', home);
-
 /*INFLOW*/
-
-server.post('/inflow', inflow);
-
 /*OUTFLOW*/
-server.post('/outflow', outflow);
+server.use(transactionRoutes);
 
 server.listen(5000,()=> console.log('listening on port 5000'));
 
