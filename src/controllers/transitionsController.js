@@ -1,26 +1,10 @@
-import { MongoClient } from "mongodb";
-import dotenv from 'dotenv'
+import db from "../databasses/mongodb.js";
 
-dotenv.config();
-let db;
-const mongoClient = new MongoClient (process.env.MONGO_URI);
-mongoClient.connect().then(()=>{
-    db = mongoClient.db('mywallet');
-});
-
-export async function home(req,res){
-    
-    const token = req.headers.authorization?.replace('Bearer ','');    
-    try {
-        const session = await db.collection('sessions').findOne({token});
-        if(!session){
-            return res.sendStatus(401);
-        }
-        const user = await db.collection('users').findOne({_id : session.userId});
-        delete user.Userpassword;
-
+export async function home(req,res){   
+    const {user}= res.locals;
+    try{
         const userTransitions = await db.collection('cashFlow').find({userId : user._id.toString()}).toArray();        
-        return res.send(userTransitions);
+        return res.status(200).send(userTransitions);
     } catch (error) {
         console.error(error);       
     }

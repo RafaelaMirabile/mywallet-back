@@ -8,12 +8,7 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
-/*CADASTRO*/
-/*LOGIN*/
 server.use(authRouters);
-/*CASH FLOW*/
-/*INFLOW*/
-/*OUTFLOW*/
 server.use(transactionRoutes);
 
 server.listen(5000,()=> console.log('listening on port 5000'));

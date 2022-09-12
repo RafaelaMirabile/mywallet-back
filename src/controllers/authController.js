@@ -3,15 +3,7 @@ import { loginInputsValidation } from "../validation/loginValidation.js";
 import translate from 'translate'
 import bcrypt from 'bcrypt'
 import { v4 as uuid } from "uuid";
-import { MongoClient } from "mongodb";
-import dotenv from 'dotenv'
-
-dotenv.config();
-let db;
-const mongoClient = new MongoClient (process.env.MONGO_URI);
-mongoClient.connect().then(()=>{
-    db = mongoClient.db('mywallet');
-});
+import db from '../databasses/mongodb.js'
 
 export async function signUp(req,res) {
     const {userName, userEmail,userPassword} = req.body;
@@ -41,7 +33,7 @@ export async function login(req,res){
 
     const user = await db.collection('users').findOne({userEmail});
     if(!user){
-        return res.status(409).send("User don't exists!");
+        return res.sendStatus(409);
     }
 
     if(loginInputsValidated){
