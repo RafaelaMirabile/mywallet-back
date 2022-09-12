@@ -33,7 +33,7 @@ export async function login(req,res){
 
     const user = await db.collection('users').findOne({userEmail});
     if(!user){
-        return res.sendStatus(409);
+        return res.sendStatus(401);
     }
 
     if(loginInputsValidated){
@@ -51,7 +51,7 @@ export async function login(req,res){
         });
 
         const session = await db.collection('sessions').findOne({userId : user._id}); 
-        return res.send(session);
+        return res.status(200).send(session);
     }
     else{
         return res.sendStatus(401);
