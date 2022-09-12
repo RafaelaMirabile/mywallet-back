@@ -19,7 +19,7 @@ export async function userMiddleware(req,res,next){
         delete user.Userpassword;
     
         res.locals.user = user;
-        res.sendStatus(200);
+
         next();
     }catch (error) {
         console.log('Erro ao tentar obter usuário através da sessão');
@@ -36,6 +36,6 @@ export function tokenMiddleware(req,res,next){
         return res.sendStatus(401);
     }
     res.locals.token =token;
-    res.sendStatus(200);
+
     next();
 }
