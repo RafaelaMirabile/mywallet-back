@@ -32,6 +32,7 @@ export async function login(req,res){
     const loginInputsValidated = loginInputsValidation(loginInputsValues);
 
     const user = await db.collection('users').findOne({userEmail});
+
     if(!user){
         return res.sendStatus(401);
     }
@@ -42,6 +43,7 @@ export async function login(req,res){
         return res.status(422).send(errorMessageTranslated);
     }
     const isValid = bcrypt.compareSync(userPassword, user.Userpassword);
+    
     if(isValid){
         const token = uuid();
         await  db.collection('sessions').insertOne({

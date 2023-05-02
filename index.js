@@ -1,5 +1,4 @@
 import express, { application } from 'express'
-import { home, inflow, outflow } from './src/controllers/transitionsController.js';
 import cors from 'cors'
 import authRouters from './src/routes/authRouters.js'
 import transactionRoutes from './src/routes/transactionRoutes.js'
