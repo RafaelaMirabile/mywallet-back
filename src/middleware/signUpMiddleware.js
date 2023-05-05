@@ -1,6 +1,6 @@
-import { signUpSchema } from "../models/signupModel.js";
+import { signUpSchema } from "../schmas/signupSchema.js";
 
-export function signUpInputsValidation(signUpInputsValues){
+export function signUpInputsMiddleware(signUpInputsValues){
     const validation = signUpSchema.validate(signUpInputsValues,{abortEarly:false});
 
     if(validation.error){
