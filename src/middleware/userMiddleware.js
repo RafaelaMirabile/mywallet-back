@@ -7,6 +7,7 @@ export async function userMiddleware(req,res,next){
     if(!token){
         return res.sendStatus(401);
     }
+    res.locals.token =token;
     
     try{
         const session = await db.collection('sessions').findOne({token});

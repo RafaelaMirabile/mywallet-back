@@ -1,13 +1,14 @@
 import { Router } from "express";
-import { deleteRecord, home, inflow, outflow, updateRecord } from "../controllers/transitionsController.js";
-import { tokenMiddleware, userMiddleware } from "../middleware/userMIddleware.js";
+import { deleteRecord, getTransactions, inflow, outflow, updateRecord } from "../controllers/transactionsController.js";
+import { tokenMiddleware, userMiddleware } from "../middleware/userMiddleware.js";
 
-const router = Router();
+const transactionsRouter = Router();
 
-router.get('/cashflow', userMiddleware, home);
-router.delete('/cashflow/:cashflowId', tokenMiddleware,deleteRecord);
-router.put('/cashflow/:cashflowId', tokenMiddleware,updateRecord);
-router.post('/inflow', tokenMiddleware, inflow);
-router.post('/outflow', tokenMiddleware, outflow);
+transactionsRouter
+.get('/cashflow', userMiddleware, getTransactions)
+.delete('/cashflow/:cashflowId', tokenMiddleware,deleteRecord)
+.put('/cashflow/:cashflowId', tokenMiddleware,updateRecord)
+.post('/inflow', tokenMiddleware, inflow)
+.post('/outflow', tokenMiddleware, outflow)
 
-export default router;
+export default transactionsRouter;
