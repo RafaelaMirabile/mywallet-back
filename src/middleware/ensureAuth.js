@@ -1,4 +1,3 @@
-import db from "../databasses/mongodb.js";
 import { ensureAuthService } from "../services/ensureAuthService.js";
 
 export async function ensureAuth(req, res, next) {

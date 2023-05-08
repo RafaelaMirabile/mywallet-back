@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router } from "express"
 import { deleteRecord, getTransactions, registerUserTransaction, updateRecord } from "../controllers/transactionsController.js"
 import { ensureAuth } from "../middleware/ensureAuth.js"
 
