@@ -1,14 +1,14 @@
 import { Router } from "express";
-import { deleteRecord, getTransactions, registerUserTransaction, updateRecord } from "../controllers/transactionsController.js";
-import { tokenMiddleware, userMiddleware } from "../middleware/userMiddleware.js";
+import { deleteRecord, getTransactions, registerUserTransaction, updateRecord } from "../controllers/transactionsController.js"
+import { ensureAuth } from "../middleware/ensureAuth.js"
 
 const transactionsRouter = Router();
 
 transactionsRouter
-.get('/cashflow', userMiddleware, getTransactions)
-.post('/inflow', tokenMiddleware, registerUserTransaction)
-.post('/outflow', tokenMiddleware, registerUserTransaction)
-.delete('/cashflow/:cashflowId', tokenMiddleware,deleteRecord)
-.put('/cashflow/:cashflowId', tokenMiddleware,updateRecord)
+    .get('/cashflow', ensureAuth, getTransactions)
+    .post('/inflow', ensureAuth, registerUserTransaction)
+    .post('/outflow', ensureAuth, registerUserTransaction)
+    .delete('/cashflow/:cashflowId', ensureAuth, deleteRecord)
+    .put('/cashflow/:cashflowId', ensureAuth, updateRecord)
 
 export default transactionsRouter;

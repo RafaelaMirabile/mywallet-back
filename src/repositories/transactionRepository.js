@@ -1,5 +1,5 @@
-import { ObjectId } from "mongodb";
-import db from "../databasses/mongodb.js";
+import { ObjectId } from "mongodb"
+import db from "../databasses/mongodb.js"
 
 async function findUserTransactions(id) {
     const userTransactions = await db.collection('cashFlow').find({ userId: id });
