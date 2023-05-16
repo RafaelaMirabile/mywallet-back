@@ -6,7 +6,6 @@ const server = express();
 server.use(express.json());
 server.use(authRouter);
 server.use(transactionsRouter);
-
 server.listen(5000,()=> console.log('listening on port 5000'));
 
 module.exports = server;
