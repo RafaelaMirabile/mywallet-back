@@ -9,6 +9,4 @@ server.use('*',cors());
 server.use(authRouter);
 server.use(transactionsRouter);
 
-
-
 export default server;
