@@ -9,6 +9,6 @@ server.use('*',cors());
 server.use(authRouter);
 server.use(transactionsRouter);
 
-server.listen(5000,()=> console.log('listening on port 5000'));
+
 
 export default server;
