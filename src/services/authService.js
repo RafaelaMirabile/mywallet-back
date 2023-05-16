@@ -5,7 +5,7 @@ import translate from 'translate'
 
 async function findUser(email, userPassword) {
     const user = await authRepository.findUserByEmail(email);
-
+    
     if (!user) {
         throw new Error('User not found in db');
     }
@@ -28,6 +28,9 @@ async function registerUser(userName, userEmail, userPassword) {
     }
 
     const registratedUser = await authRepository.registerUser(userName, userEmail, userPassword);
+    if(!registratedUser){
+        throw new Error("not able to register user in db");
+    }
     return(registratedUser); 
 }
 

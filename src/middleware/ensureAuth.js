@@ -1,12 +1,11 @@
 import { ensureAuthService } from "../services/ensureAuthService.js";
 
 export async function ensureAuth(req, res, next) {
-    const token = req.headers.authorization?.replace('Bearer ', '');
+    const token = req.headers.authorization.replace('Bearer ', '');
 
     if (!token) {
-        return res.status(401).send("token undefined on headers authorization");
+        return res.status(401).send("token undefined");
     }
-    res.locals.token = token;
 
     try {
         const session = await ensureAuthService.verifySession(token);

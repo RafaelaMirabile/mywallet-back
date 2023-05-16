@@ -3,7 +3,8 @@ import { v4 as uuid } from "uuid"
 import bcrypt from 'bcrypt'
 
 async function findUserByEmail(email) {
-    return await db.collection('users').findOne({ userEmail: email });
+    const userFound = await db.collection('users').findOne({ userEmail: email });
+    return (userFound)
 }
 
 async function registerSession(user) {
