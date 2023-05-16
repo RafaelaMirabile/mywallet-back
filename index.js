@@ -8,10 +8,7 @@ server.use(express.json());
 server.use(cors());
 server.use(authRouter);
 server.use(transactionsRouter);
-server.get("/", (req, res) => {
-    res.send("Express on Vercel");
-  });
 
-server.listen(3000,()=> console.log('listening on port 3000'));
+server.listen(5000,()=> console.log('listening on port 5000'));
 
 module.exports = server;
