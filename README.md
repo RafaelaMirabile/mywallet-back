@@ -45,7 +45,7 @@ Before you begin, you will need to have the following tools installed on your ma
 
 MongoDB: document-oriented NoSQL database. 
 
-``` MongoDB
+``` jsx
 
 // Start mongodb server at terminal 
 $ mongod --dbpath ~/<dictory where mongodb is installed> 
