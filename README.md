@@ -53,7 +53,7 @@ mongod --dbpath ~/<dictory where mongodb is installed>
 /*Connect to mongodb using the server it self*/
 $ mongo
 
-/*Create database with collections usig dump file*/
+/*Create database with collections using dump file*/
 
 $ mongorestore --db mywallet --verbose \<path to project repossitory>\dump\mywallet
 
