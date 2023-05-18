@@ -48,7 +48,7 @@ MongoDB: document-oriented NoSQL database.
 ``` jsx
 
 // Start mongodb server at terminal 
-$ mongod --dbpath ~/<dictory where mongodb is installed> 
+$ mongod --dbpath ~/.<dictory where mongodb is installed> 
 
 //Connect to mongodb using the server it //self
 $ mongo
