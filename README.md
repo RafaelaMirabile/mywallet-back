@@ -47,13 +47,13 @@ MongoDB: document-oriented NoSQL database.
 
 ``` MongoDB
 
-/* Start mongodb server at terminal */
-mongod --dbpath ~/<dictory where mongodb is installed> 
+// Start mongodb server at terminal 
+$ mongod --dbpath ~/<dictory where mongodb is installed> 
 
-/*Connect to mongodb using the server it self*/
+//Connect to mongodb using the server it //self
 $ mongo
 
-/*Create database with collections using dump file*/
+//Create database with collections using //dump file
 
 $ mongorestore --db mywallet --verbose \<path to project repossitory>\dump\mywallet
 
