@@ -19,12 +19,12 @@ async function registerSession(user) {
     return (userInSessions);
 }
 
-async function registerUser(userName, userEmail, userPassword) {
+async function registerUser(name, email, userPassword) {
     const passwordHash = bcrypt.hashSync(userPassword, 12);
 
     const userRegistratedOnDB = await db.collection('users').insertOne({
-        userName,
-        userEmail,
+        userName : name,
+        userEmail: email,
         Userpassword: passwordHash
     });
     return (userRegistratedOnDB);

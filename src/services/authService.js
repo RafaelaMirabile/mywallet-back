@@ -1,19 +1,24 @@
-import bcrypt from 'bcrypt'
 import { authRepository } from '../repositories/authRepository.js'
 import { signUpInputsMiddleware } from '../middleware/signUpMiddleware.js'
 import translate from 'translate'
+import bcrypt from 'bcrypt'
 
 async function findUser(email, userPassword) {
-    const user = await authRepository.findUserByEmail(email);
+    if (email == null || userPassword == null || email == null && userPassword == null) {
+        throw new Error('Bad request');
+    }
     
+    const user = await authRepository.findUserByEmail(email);
     if (!user) {
         throw new Error('User not found in db');
     }
-    const isValid = bcrypt.compareSync(userPassword, user.Userpassword);
+
+    const isValid = await bcrypt.compareSync(userPassword, user.userPassword);
     if (!isValid) {
         throw new Error('Incorrect password');
     }
-    const userSession = authRepository.registerSession(user);
+    
+    const userSession = await authRepository.registerSession(user);
     return (userSession);
 }
 
@@ -28,10 +33,10 @@ async function registerUser(userName, userEmail, userPassword) {
     }
 
     const registratedUser = await authRepository.registerUser(userName, userEmail, userPassword);
-    if(!registratedUser){
+    if (!registratedUser) {
         throw new Error("not able to register user in db");
     }
-    return(registratedUser); 
+    return (registratedUser);
 }
 
 export const authService = {
