@@ -83,6 +83,15 @@ $ npx nodemon src/index.js
 
 ---
 
+### Running Tests (Jest | Supertest)
+
+``` jsx
+// Run tests
+$ npm run test
+```
+
+---
+
 ## Tech Stack
 
 The following tools were used in the construction of the project-api:
